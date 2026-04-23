@@ -3,4 +3,5 @@
     <File Path="compose.yaml" />
   </Folder>
   <Project Path="UkiDukiRPG.API/UkiDukiRPG.API.csproj" />
+  <Project Path="UkiDukiRPG.Core/UkiDukiRPG.Core.csproj" />
 </Solution>
