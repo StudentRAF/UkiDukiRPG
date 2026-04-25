@@ -1,6 +1,13 @@
 ﻿namespace UkiDukiRPG.Core.Domain.Time;
 
-public class TimeSystem
+public interface IScheduler
+{
+    void Schedule(Action action, TimeInterval interval);
+
+    void Schedule(Action action, int interval, TimeUnit delayUnit);
+}
+
+public class TimeSystem : IScheduler
 {
     private readonly PriorityQueue<Action, int> m_Queue = new();
 
@@ -25,6 +32,6 @@ public class TimeSystem
 
     // @formatter:off
     public void Schedule(Action action, int interval, TimeUnit delayUnit) => m_Queue.Enqueue(action, 
-                                                                                          m_CurrentTick + TimeInterval.From(interval, delayUnit).Ticks);
+                                                                                             m_CurrentTick + TimeInterval.From(interval, delayUnit).Ticks);
     // @formatter:on
 }
