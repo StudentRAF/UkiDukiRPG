@@ -7,7 +7,7 @@ namespace UkiDukiRPG.Core.Domain.Effects;
 public class SacrificeEffect(float baseDamage, Func<IHero, float> attackerModifierFunction, Func<IHero, float> defenderModifierFunction, IScheduler scheduler)
 : InstantEffect(nameof(SacrificeEffect), scheduler)
 {
-    private readonly float             m_BaseDamage               = baseDamage;
+    private readonly float              m_BaseDamage               = baseDamage;
     private readonly Func<IHero, float> m_AttackerModifierFunction = attackerModifierFunction;
     private readonly Func<IHero, float> m_DefenderModifierFunction = defenderModifierFunction;
 

@@ -5,12 +5,12 @@ namespace UkiDukiRPG.Core.Domain.Effects;
 
 //NOTE: Used by Knight's Shield Up, Spider's Skitter, Dragon's Dragon Scales, and Goblin Mage's Hex Shield.
 public class DefenseIncreaseEffect(
-    float             baseIncrease,
-    float             increaseFactor,
-    TimeInterval      duration,
+    float              baseIncrease,
+    float              increaseFactor,
+    TimeInterval       duration,
     Func<IHero, float> attackerModifierFunction,
     Func<IHero, float> defenderModifierFunction,
-    IScheduler        scheduler
+    IScheduler         scheduler
 ) : BuffEffect(nameof(DefenseIncreaseEffect), duration, scheduler)
 {
     private readonly Func<IHero, float> m_AttackerModifierFunction = attackerModifierFunction;
@@ -26,7 +26,7 @@ public class DefenseIncreaseEffect(
         var defenderModifier = m_DefenderModifierFunction(defender);
 
         m_Increase = (int)((attacker.EffectiveStatBlock.Defense.Level + m_BaseIncrease) * m_IncreaseFactor * attackerModifier * defenderModifier);
-        
+
         attacker.ProgressionStatBlock.Defense.Ascend(m_Increase);
 
         ScheduleClear(attacker);

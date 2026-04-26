@@ -5,12 +5,12 @@ namespace UkiDukiRPG.Core.Domain.Effects;
 
 //NOTE: Used by Spider's Web Throw and Goblin Warrior's Dirty Kick.
 public class DefenseDecreaseEffect(
-    float             baseDecrease,
-    float             decreaseFactor,
-    TimeInterval      duration,
+    float              baseDecrease,
+    float              decreaseFactor,
+    TimeInterval       duration,
     Func<IHero, float> attackerModifierFunction,
     Func<IHero, float> defenderModifierFunction,
-    IScheduler        scheduler
+    IScheduler         scheduler
 ) : DebuffEffect(nameof(DefenseDecreaseEffect), duration, scheduler)
 {
     private readonly Func<IHero, float> m_AttackerModifierFunction = attackerModifierFunction;

@@ -5,12 +5,12 @@ namespace UkiDukiRPG.Core.Domain.Effects;
 
 //NOTE: Used by Witch's Curse and Dragon's Intimidate.
 public class AttackDecreaseEffect(
-    float             baseDecrease,
-    float             decreaseFactor,
-    TimeInterval      duration,
+    float              baseDecrease,
+    float              decreaseFactor,
+    TimeInterval       duration,
     Func<IHero, float> attackerModifierFunction,
     Func<IHero, float> defenderModifierFunction,
-    IScheduler        scheduler
+    IScheduler         scheduler
 ) : DebuffEffect(nameof(AttackDecreaseEffect), duration, scheduler)
 {
     private readonly Func<IHero, float> m_AttackerModifierFunction = attackerModifierFunction;
@@ -26,7 +26,7 @@ public class AttackDecreaseEffect(
         var defenderModifier = m_DefenderModifierFunction(defender);
 
         m_Decrease = (int)((defender.EffectiveStatBlock.Attack.Level - m_BaseDecrease) * (1 - m_DecreaseFactor) * attackerModifier * defenderModifier);
-        
+
         defender.ProgressionStatBlock.Attack.Descend(m_Decrease);
 
         ScheduleClear(defender);

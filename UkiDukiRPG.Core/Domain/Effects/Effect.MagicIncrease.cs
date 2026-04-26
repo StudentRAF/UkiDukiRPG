@@ -5,12 +5,12 @@ namespace UkiDukiRPG.Core.Domain.Effects;
 
 //NOTE: Used by Witch's Dark Pact and Goblin Mage's Arcane Surge.
 public class MagicIncreaseEffect(
-    float             baseIncrease,
-    float             increaseFactor,
-    TimeInterval      duration,
+    float              baseIncrease,
+    float              increaseFactor,
+    TimeInterval       duration,
     Func<IHero, float> attackerModifierFunction,
     Func<IHero, float> defenderModifierFunction,
-    IScheduler        scheduler
+    IScheduler         scheduler
 ) : BuffEffect(nameof(MagicIncreaseEffect), duration, scheduler)
 {
     private readonly Func<IHero, float> m_AttackerModifierFunction = attackerModifierFunction;
@@ -26,7 +26,7 @@ public class MagicIncreaseEffect(
         var defenderModifier = m_DefenderModifierFunction(defender);
 
         m_Increase = (int)((attacker.EffectiveStatBlock.Magic.Level + m_BaseIncrease) * m_IncreaseFactor * attackerModifier * defenderModifier);
-        
+
         attacker.ProgressionStatBlock.Magic.Ascend(m_Increase);
 
         ScheduleClear(attacker);

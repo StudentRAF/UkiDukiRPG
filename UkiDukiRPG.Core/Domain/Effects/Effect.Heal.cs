@@ -8,7 +8,7 @@ namespace UkiDukiRPG.Core.Domain.Effects;
 public class HealEffect(float baseHeal, Func<IHero, float> attackerModifierFunction, Func<IHero, float> defenderModifierFunction, IScheduler scheduler)
 : InstantEffect(nameof(HealEffect), scheduler)
 {
-    private readonly float             m_BaseHeal                 = baseHeal;
+    private readonly float              m_BaseHeal                 = baseHeal;
     private readonly Func<IHero, float> m_AttackerModifierFunction = attackerModifierFunction;
     private readonly Func<IHero, float> m_DefenderModifierFunction = defenderModifierFunction;
 

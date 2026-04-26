@@ -5,12 +5,12 @@ namespace UkiDukiRPG.Core.Domain.Effects;
 
 //NOTE: Used by Goblin Mage's Mana Drain.
 public class MagicDecreaseEffect(
-    float             baseDecrease,
-    float             decreaseFactor,
-    TimeInterval      duration,
+    float              baseDecrease,
+    float              decreaseFactor,
+    TimeInterval       duration,
     Func<IHero, float> attackerModifierFunction,
     Func<IHero, float> defenderModifierFunction,
-    IScheduler        scheduler
+    IScheduler         scheduler
 ) : DebuffEffect(nameof(MagicDecreaseEffect), duration, scheduler)
 {
     private readonly Func<IHero, float> m_AttackerModifierFunction = attackerModifierFunction;

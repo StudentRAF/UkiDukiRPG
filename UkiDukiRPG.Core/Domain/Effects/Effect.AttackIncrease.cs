@@ -5,12 +5,12 @@ namespace UkiDukiRPG.Core.Domain.Effects;
 
 //NOTE: Used by Knight's Battle Cry and Goblin Warrior's Frenzy.
 public class AttackIncreaseEffect(
-    float             baseIncrease,
-    float             increaseFactor,
-    TimeInterval      duration,
+    float              baseIncrease,
+    float              increaseFactor,
+    TimeInterval       duration,
     Func<IHero, float> attackerModifierFunction,
     Func<IHero, float> defenderModifierFunction,
-    IScheduler        scheduler
+    IScheduler         scheduler
 ) : BuffEffect(nameof(AttackIncreaseEffect), duration, scheduler)
 {
     private readonly Func<IHero, float> m_AttackerModifierFunction = attackerModifierFunction;
@@ -26,7 +26,7 @@ public class AttackIncreaseEffect(
         var defenderModifier = m_DefenderModifierFunction(defender);
 
         m_Increase = (int)((attacker.EffectiveStatBlock.Attack.Level + m_BaseIncrease) * m_IncreaseFactor * attackerModifier * defenderModifier);
-        
+
         attacker.ProgressionStatBlock.Attack.Ascend(m_Increase);
 
         ScheduleClear(attacker);
