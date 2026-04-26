@@ -2,6 +2,8 @@
 
 public enum StatType
 {
+    None = 0,
+    
     Health,
     Attack,
     Defense,
