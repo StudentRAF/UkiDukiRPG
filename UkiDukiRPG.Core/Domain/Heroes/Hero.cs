@@ -4,14 +4,25 @@ using UkiDukiRPG.Core.Domain.Stats;
 
 namespace UkiDukiRPG.Core.Domain.Heroes;
 
-public class Hero
+public interface IHero
 {
-    public string    Name                 { get; }
+    StatBlock EffectiveStatBlock   { get; }
+    StatBlock BaseStatBlock        { get; }
+    StatBlock ProgressionStatBlock { get; }
+
+    float CurrentHealth { get; set; }
+}
+
+public class Hero : IHero
+{
+    public string Name          { get; }
+    public float  CurrentHealth { get; set; }
+
     public StatBlock BaseStatBlock        { get; }
     public StatBlock ProgressionStatBlock { get; }
 
     //NOTE: Should not subscribe to events of this instance because whenever stats are changing, this instance will be changes as well
-    public StatBlock TotalStatBlock => m_TotalStatBlock;
+    public StatBlock EffectiveStatBlock => m_TotalStatBlock;
 
     private StatBlock m_TotalStatBlock;
 
@@ -39,7 +50,7 @@ public class Hero
                .AppendLine("ProgressionStats: ")
                .AppendLine(ProgressionStatBlock.ToString())
                .AppendLine("TotalStats: ")
-               .AppendLine(TotalStatBlock.ToString());
+               .AppendLine(EffectiveStatBlock.ToString());
 
         return builder.ToString();
     }
