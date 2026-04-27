@@ -16,13 +16,13 @@ public class DrainLifeAbility(IScheduler scheduler) : Ability(nameof(DrainLifeAb
     public override void Use(IHero caster, IHero target)
     {
         var effect1 = new MagicDamageEffect(c_BaseDamage, ModifierFunction.MagicAmplification, ModifierFunction.NoEffect, m_Scheduler);
-        
+
         var oldHealth = target.CurrentHealth;
-        
+
         effect1.Apply(caster, target);
-        
+
         var healthTaken = oldHealth - target.CurrentHealth;
-        
+
         var effect2 = new HealEffect(healthTaken, ModifierFunction.NoEffect, ModifierFunction.NoEffect, m_Scheduler);
 
         effect2.Apply(caster, caster);

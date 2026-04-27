@@ -10,9 +10,9 @@ public class IntimidateAbility(IScheduler scheduler) : Ability(nameof(Intimidate
 {
     private const float c_BaseDecrease   = 0.0f;
     private const float c_DecreaseFactor = 0.25f;
-    
+
     private readonly IScheduler m_Scheduler = scheduler;
-    
+
     public override void Use(IHero caster, IHero target)
     {
         var effect = new AttackDecreaseEffect(c_BaseDecrease, c_DecreaseFactor, TimeInterval.FromRounds(2), ModifierFunction.NoEffect, ModifierFunction.NoEffect, m_Scheduler);

@@ -16,7 +16,7 @@ public class ArcaneSurgeAbility(IScheduler scheduler) : Ability(nameof(ArcaneSur
     public override void Use(IHero caster, IHero target)
     {
         var effect = new MagicIncreaseEffect(c_BaseIncrease, c_IncreaseFactor, TimeInterval.FromRounds(2), ModifierFunction.NoEffect, ModifierFunction.NoEffect, m_Scheduler);
-        
+
         effect.Apply(caster, caster);
     }
 }
